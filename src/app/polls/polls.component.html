@@ -1,0 +1,83 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8" style="margin: auto">
+      <div *ngFor="let item of storeData">
+
+        <div class="card-padding">
+          <div class="card" >
+            <!--Card image-->
+            <div class="view overlay hm-white-slight">
+              <div class="card-block">
+                <!--Title-->
+                <div>
+                  <h3 class="card-title">{{item.title}}</h3>{{item.date}}
+                </div>
+              </div>
+              <div>
+                <div class="poll_chart" *ngIf="isDataAvailable">
+                  <div style="display: block">
+                    <canvas baseChart
+                            [datasets]="[{data: [item.option1val, item.option2val, item.option3val], label: 'Votes'}]"
+                            [labels]="[item.option1, item.option2, item.option3]"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!--<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">-->
+            </div>
+            <!--/.Card image-->
+            <!--Card content-->
+            <div class="card-block">
+              <!--Title-->
+              <hr>
+              <!--Text-->
+              <p class="card-text" id="card-text">{{item.desc}}</p>
+              <hr>
+              <div class="row" *ngIf="!isLoggedIn">
+                <button  class="btn btn-primary col-xs-4" (click)="signInPopUp()">Log In now to Vote</button>
+              </div>
+
+              <div class="row" *ngIf="isLoggedIn" [attr.id]="'card'+item.pollID">
+                <div *ngFor="let item2 of notVoted">
+                  <div *ngIf="item.pollID==item2">
+
+                <button (click)="vote1($event)" id="{{item.pollID}}" class="btn btn-success col-xs-4">{{item.option1}}</button>
+                <button (click)="vote2($event)" id="{{item.pollID}}" class="btn btn-danger col-xs-4">{{item.option2}}</button>
+                <button (click)="vote3($event)" id="{{item.pollID}}" class="btn btn-warning col-xs-4">{{item.option3}}</button>
+              </div>
+
+              </div>
+                <div *ngFor="let item3 of voted">
+                  <div *ngIf="item.pollID==item3" style="margin: auto">
+                    <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>Your will has been heard.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!--/.Card content-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let poll of storeData">
+<div *ngFor="let item of voted">
+  <div *ngIf="poll.pollID==item">
+  {{item}}
+  </div>
+
+</div>
+</div>
+
+
+
+<div id="snackbar"></div>

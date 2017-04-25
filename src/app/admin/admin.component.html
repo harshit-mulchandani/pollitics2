@@ -1,0 +1,70 @@
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-padding">
+        <div class="card">
+
+          <!--Card image-->
+          <div class="view overlay hm-white-slight">
+<!--Naked Form-->
+<div class="card-block">
+
+  <!--Header-->
+  <div class="text-center">
+    <h3><i class="fa custom-icon fa-check-circle"></i> Create Poll</h3>
+    <hr class="mt-2 mb-2">
+  </div>
+
+  <!--Body-->
+
+  <br>
+
+  <!--Body-->
+  <form [formGroup]="createPoll" (ngSubmit)="onSubmit()">
+  <div class="md-form">
+    <i class="fa fa-pencil prefix custom-icon"></i>
+    <input type="text" id="form3" [(ngModel)]="titleemp" class="form-control" formControlName="title" placeholder="Poll Title">
+    <label for="form3"></label>
+  </div>
+  <div class="md-form">
+    <i class="fa fa-info prefix custom-icon"></i>
+    <textarea type="text" id="form8" class="md-textarea" [(ngModel)]="descemp" formControlName="desc" placeholder="Poll Description"></textarea>
+    <label for="form8"></label>
+  </div>
+  <div class="md-form">
+    <i class="fa fa-tag prefix custom-icon"></i>
+    <input type="text" id="form2"  formControlName="option1" class="form-control" [(ngModel)]="op1emp" placeholder="Option1" >
+    <label for="form2"></label>
+  </div>
+
+  <div class="md-form">
+    <i class="fa fa-tag custom-icon prefix"></i>
+    <input type="text" id="form32"  formControlName="option2" [(ngModel)]="op2emp" class="form-control" placeholder="Option2">
+    <label for="form32"></label>
+  </div>
+
+  <div class="md-form">
+    <i class="fa fa-tag custom-icon prefix"></i>
+    <input type="text" id="form33" formControlName="option3" class="form-control" [(ngModel)]="op3emp" placeholder="Option3">
+    <label for="form33"></label>
+  </div>
+
+
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-default" [disabled]="!createPoll.valid">Create</button>
+
+
+  </div>
+  </form>
+
+</div>
+<!--Naked Form-->
+          </div></div></div></div></div></div>
+<div id="snackbar__pollCreate">Poll created successfully ! <button class='btn btn-primary col-xs-4' [routerLink]="['/polls']">Click to View</button></div>
